@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  AtiperaTask:
+    image: nazwa_obrazu
+    build:
+      context: ../../
+      dockerfile: src/docker/Dockerfile
+    container_name: atipera
+    ports:
+      - "8080:8080"
+
+
+

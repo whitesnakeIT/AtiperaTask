@@ -1,17 +1,14 @@
 package com.kapusniak.tomasz.atiperatask.enums;
 
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
-public enum Url {
+public enum GitHubUrl {
     BASE_URL("https://api.github.com/users/***USERNAME***"),
     REPO_URL("https://api.github.com/users/***USERNAME***/repos"),
-    BRANCHES_URL("https://api.github.com/repos/***USERNAME***/***REPOSITORY_NAME***/branches");
+    BRANCH_URL("https://api.github.com/repos/***USERNAME***/***REPOSITORY_NAME***/branches");
 
     private final String url;
 
-    Url(String url) {
+    GitHubUrl(String url) {
         this.url = url;
     }
 
