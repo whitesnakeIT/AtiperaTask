@@ -56,5 +56,28 @@ class GitHubControllerTest {
         // then
         result.andExpect(status().isOk());
     }
+@Test
+    @DisplayName("should return status 406 after using xml accept header instead of json using path variable")
+    void getUserDetailsAcceptXmlFromUrl() throws Exception {
+        // when
+        ResultActions result = mockMvc.perform(get("/{username}","exampleUser")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_XML));
+
+        // then
+        result.andExpect(status().isNotAcceptable());
+    }
+
+    @Test
+    @DisplayName("should return status 200 after using json accept header using path variable")
+    void getUserDetailsAcceptJsonFromUrl() throws Exception {
+        // when
+        ResultActions result = mockMvc.perform(get("/{username}","exampleUser")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE));
+
+        // then
+        result.andExpect(status().isOk());
+    }
 
 }

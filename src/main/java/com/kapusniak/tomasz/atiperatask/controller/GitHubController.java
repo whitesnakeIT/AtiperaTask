@@ -7,10 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,8 @@ public class GitHubController {
         return "index";
     }
 
-    @PostMapping(value = "/",
+    @PostMapping(
+            value = "/",
             consumes = {
                     MediaType.APPLICATION_FORM_URLENCODED_VALUE,
                     MediaType.APPLICATION_JSON_VALUE
@@ -41,6 +39,16 @@ public class GitHubController {
                 gitHubService.showUserRepositoriesWithoutForks(username);
 
         return new ResponseEntity<>(repositoryDetails, HttpStatus.OK);
+
+    }
+    @GetMapping(
+            value = "/{username}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<RepositoryDetails>> getUserDetailsFromUrl(
+            @PathVariable(name = "username") String username) {
+
+        return getUserDetails(username);
 
     }
 }
